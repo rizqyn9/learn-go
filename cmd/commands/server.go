@@ -1,12 +1,19 @@
 package commands
 
-import "github.com/spf13/cobra"
+import (
+	"learn-go/server"
+	"log"
+
+	"github.com/spf13/cobra"
+)
 
 func RunServer() *cobra.Command {
 	command := cobra.Command{
 		Use: "Server",
 		Run: func(cmd *cobra.Command, args []string) {
-			cmd.HelpFunc()(cmd, args)
+			server := server.NewServer()
+
+			log.Fatal(server.Listen(":3000"))
 		},
 	}
 
